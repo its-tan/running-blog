@@ -6,8 +6,8 @@ Build bằng [Astro](https://astro.build), host trên GitHub Pages.
 ## Chạy thử ở máy local
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Mở http://localhost:4321/running-blog/vi/ (hoặc /en/) để xem.
@@ -35,8 +35,8 @@ Mở http://localhost:4321/running-blog/vi/ (hoặc /en/) để xem.
 ## Build & xem thử bản build
 
 ```bash
-npm run build
-npm run preview
+pnpm build
+pnpm preview
 ```
 
 ## Deploy lên GitHub Pages
