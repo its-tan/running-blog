@@ -1,0 +1,49 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import StatBadge from '../components/StatBadge.astro';
+import { ui, type Lang } from '../i18n/ui';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  lang: Lang;
+  tags: string[];
+  watch?: string;
+  activityType?: string;
+  distanceKm?: number;
+}
+
+const { title, description, pubDate, lang, tags, watch, activityType, distanceKm } = Astro.props;
+const t = ui[lang];
+const dateLabel = pubDate.toLocaleDateString(lang === 'vi' ? 'vi-VN' : 'en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+<BaseLayout title={title} description={description}>
+  <article>
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold tracking-tight">{title}</h1>
+      <p class="mt-2 text-sm text-stone-500">{t['post.publishedOn']} {dateLabel}</p>
+      {(watch || activityType || distanceKm) && (
+        <div class="mt-4 flex flex-wrap gap-2">
+          {watch && <StatBadge label="⌚" value={watch} />}
+          {activityType && <StatBadge label={t['post.activityType']} value={activityType} />}
+          {distanceKm && <StatBadge label="km" value={String(distanceKm)} />}
+        </div>
+      )}
+      {tags.length > 0 && (
+        <ul class="mt-4 flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <li class="text-xs text-emerald-700">#{tag}</li>
+          ))}
+        </ul>
+      )}
+    </header>
+    <div class="space-y-4 leading-relaxed [&_h2]:mt-8 [&_h2]:text-xl [&_h2]:font-semibold [&_p]:text-stone-700 [&_a]:text-emerald-700 [&_a]:underline">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>

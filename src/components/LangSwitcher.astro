@@ -1,0 +1,11 @@
+---
+import { ui, type Lang } from '../i18n/ui';
+
+const locale = (Astro.currentLocale ?? 'vi') as Lang;
+const other: Lang = locale === 'vi' ? 'en' : 'vi';
+const base = import.meta.env.BASE_URL;
+const label = ui[locale]['lang.switch'];
+---
+<a href={`${base}${other}/`} class="text-sm underline underline-offset-4 hover:text-emerald-700">
+  {label}
+</a>

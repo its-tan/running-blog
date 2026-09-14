@@ -1,0 +1,16 @@
+---
+// Trang gốc "/" tự chuyển hướng sang locale mặc định (vi).
+const base = import.meta.env.BASE_URL;
+const target = `${base}vi/`;
+---
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+  </head>
+  <body>
+    <p>Đang chuyển hướng… <a href={target}>Bấm vào đây</a> nếu không tự chuyển.</p>
+  </body>
+</html>
